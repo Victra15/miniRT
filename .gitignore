@@ -2,3 +2,4 @@ mlx/libmlx.a
 mlx/*.o
 *.o
 miniRT
+*.dSYM
