@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 16:03:13 by yolee             #+#    #+#             */
-/*   Updated: 2022/10/18 22:01:52 by yolee            ###   ########.fr       */
+/*   Updated: 2022/10/19 00:36:39 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@
 
 # define WINDOW_HEIGHT 1080
 # define WINDOW_WIDTH 1920
+
+typedef struct s_ray
+{
+	t_vec3	orig;
+	t_vec3	dir;
+}t_ray;
+
 
 typedef struct s_pos
 {
@@ -51,5 +58,9 @@ typedef struct s_data
 	t_img	img;
 }t_data;
 
+
+t_ray		gen_ray(t_pos pixel_pos);
+t_color3	get_ray_color(t_ray *ray);
+void		trace_ray(t_data *data, t_pos pixel_pos);
 
 #endif
