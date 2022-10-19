@@ -6,11 +6,19 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 15:58:44 by yolee             #+#    #+#             */
-/*   Updated: 2022/10/19 00:47:30 by yolee            ###   ########.fr       */
+/*   Updated: 2022/10/19 23:40:08 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+static int	mlx_exit(int keycode, void *param)
+{
+	(void)keycode;
+	(void)param;
+	exit(0);
+	return (0);
+}
 
 static void	mlx_window_set(t_mlx *mlx)
 {
@@ -32,6 +40,8 @@ static void	mlx_image_set(t_data *data)
 	while (pos.y < WINDOW_HEIGHT)
 	{
 		pos.x = 0;
+		if(pos.y == 960)
+			printf("aaa");
 		while (pos.x < WINDOW_WIDTH)
 		{
 			trace_ray(data, pos);
@@ -48,7 +58,7 @@ static void	mlx_image_set(t_data *data)
 int	main(int argc, char **argv)
 {
 	t_data	data;
-	
+
 	(void)argv;
 	if (argc != 2)
 		write(2, "Error\n", 6);
@@ -57,7 +67,7 @@ int	main(int argc, char **argv)
 		// parse_data(&data, argv[1]);
 		mlx_window_set(&data.mlx);
 		mlx_image_set(&data);
-		mlx_hook(&data.mlx.mlx_win, 17, 0, exit, NULL);
+		mlx_hook(data.mlx.mlx_win, 17, 0, mlx_exit, NULL);
 		mlx_loop(data.mlx.mlx);
 	}
 	return (0);
