@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 21:32:59 by yolee             #+#    #+#             */
-/*   Updated: 2022/10/18 21:43:40 by yolee            ###   ########.fr       */
+/*   Updated: 2022/10/24 19:56:32 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ struct s_dvec3	v_mult(struct s_dvec3 vec, double sca)
 	return (result);
 }
 
-double	v_len(struct s_dvec3 vec)
+double	v_abs(struct s_dvec3 vec)
 {
 	double	result;
 

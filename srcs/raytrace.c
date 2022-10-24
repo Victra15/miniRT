@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 22:41:54 by yolee             #+#    #+#             */
-/*   Updated: 2022/10/19 23:42:48 by yolee            ###   ########.fr       */
+/*   Updated: 2022/10/24 22:12:01 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,17 @@ static void	put_pixel_to_image(t_img *img, int x, int y, int color)
 
 void	trace_ray(t_data *data, t_pos pixel_pos)
 {
-	t_ray		pixel_ray;
+	(void)data;
+	(void)pixel_pos;
+	// t_ray		pixel_ray;
 	t_color3	ray_color;
 	int			conv_color;
 
-	pixel_ray = gen_ray(pixel_pos);
-	ray_color = get_ray_color(&pixel_ray);
+	// pixel_ray = gen_ray(pixel_pos);
+	// ray_color = get_ray_color(&pixel_ray);
+	ray_color.x = 1.0;
+	ray_color.y = 1.0;
+	ray_color.z = 1.0;
 	conv_color = (int)(ray_color.x * 255.999) * 256 * 256
 		+ (int)(ray_color.y * 255.999) * 256
 		+ (int)(ray_color.z * 255.999);

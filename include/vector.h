@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 21:25:08 by yolee             #+#    #+#             */
-/*   Updated: 2022/10/19 00:33:03 by yolee            ###   ########.fr       */
+/*   Updated: 2022/10/24 19:56:23 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ double			v_inner(struct s_dvec3 vec1, struct s_dvec3 vec2);
 struct s_dvec3	v_sum(struct s_dvec3 vec1, struct s_dvec3 vec2);
 struct s_dvec3	v_diff(struct s_dvec3 vec1, struct s_dvec3 vec2);
 struct s_dvec3	v_mult(struct s_dvec3 vec, double sca);
-double			v_len(struct s_dvec3 vec);
+double			v_abs(struct s_dvec3 vec);
 struct s_dvec3	v_unit(struct s_dvec3 vec);
 
 #endif

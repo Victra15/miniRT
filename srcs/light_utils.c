@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_utils2.c                                    :+:      :+:    :+:   */
+/*   light_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/18 21:42:54 by yolee             #+#    #+#             */
-/*   Updated: 2022/10/19 23:24:20 by yolee            ###   ########.fr       */
+/*   Created: 2022/10/24 22:23:56 by yolee             #+#    #+#             */
+/*   Updated: 2022/10/24 22:23:57 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.h"
+#include "light.h"
 
-struct s_dvec3	v_unit(struct s_dvec3 vec)
+struct s_light	light_gen(t_vec3 coor, double ratio, t_color3 color)
 {
-	double			len;
-	struct s_dvec3	result;
+	struct s_light	light;
 
-	len = v_len(vec);
-	result.x = vec.x / len;
-	result.y = vec.y / len;
-	result.z = vec.z / len;
-	return (result);
-}
-
-struct s_dvec3	v_gen(double x, double y, double z)
-{
-	struct s_dvec3	result;
-
-	result.x = x;
-	result.y = y;
-	result.z = z;
-	return (result);
+	light.coor = coor;
+	light.ratio = ratio;
+	light.color = color;
+	return (light);
 }

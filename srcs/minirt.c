@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 15:58:44 by yolee             #+#    #+#             */
-/*   Updated: 2022/10/19 23:40:08 by yolee            ###   ########.fr       */
+/*   Updated: 2022/10/24 22:08:38 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	mlx_image_set(t_data *data)
 {
 	t_pos	pos;
 
-	data->img.img = mlx_new_image(data->mlx.mlx, 1920, 1080);
+	data->img.img = mlx_new_image(data->mlx.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	data->img.addr = mlx_get_data_addr(data->img.img,
 			&data->img.bits_per_pixel,
 			&data->img.line_length,
@@ -40,8 +40,6 @@ static void	mlx_image_set(t_data *data)
 	while (pos.y < WINDOW_HEIGHT)
 	{
 		pos.x = 0;
-		if(pos.y == 960)
-			printf("aaa");
 		while (pos.x < WINDOW_WIDTH)
 		{
 			trace_ray(data, pos);

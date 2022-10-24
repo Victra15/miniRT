@@ -6,28 +6,28 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 16:03:13 by yolee             #+#    #+#             */
-/*   Updated: 2022/10/24 20:07:56 by yolee            ###   ########.fr       */
+/*   Updated: 2022/10/24 22:17:02 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 # include <fcntl.h>
-# include <math.h>
-# include "mlx.h"
-# include "vector.h"
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
+# include "libft.h"
+# include "mlx.h"
+# include "camera.h"
+# include "ambient_light.h"
+# include "light.h"
+# include "cylinder.h"
+# include "plane.h"
+# include "ray.h"
+# include "sphere.h"
 
 # define WINDOW_HEIGHT 1080
 # define WINDOW_WIDTH 1920
-
-typedef struct s_ray
-{
-	t_vec3	orig;
-	t_vec3	dir;
-}t_ray;
 
 typedef struct s_pos
 {
@@ -44,7 +44,6 @@ typedef struct s_img
 	int		endian;
 }t_img;
 
-
 typedef struct s_mlx
 {
 	void	*mlx;
@@ -53,17 +52,15 @@ typedef struct s_mlx
 
 typedef struct s_data
 {
-	t_mlx	mlx;
-	t_img	img;
-	//parsing ...
-	//t_sph
-	//t_plane
-	//t_cyli
-	//t_camera
-	//t_am_light
-	//t_light
+	t_mlx				mlx;
+	t_img				img;
+	t_camera			camera;
+	t_light				light;
+	t_ambient_light		am_light;
+	t_list				sphere_list;
+	t_list				plane_list;
+	t_list				cylinder_list;
 }t_data;
-
 
 t_ray		gen_ray(t_pos pixel_pos);
 t_color3	get_ray_color(t_ray *ray);
