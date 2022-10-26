@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 20:12:38 by yolee             #+#    #+#             */
-/*   Updated: 2022/10/24 22:06:34 by yolee            ###   ########.fr       */
+/*   Updated: 2022/10/26 21:23:08 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ struct s_cylinder	cylinder_gen(t_vec3 coor,
 						t_cyl_sca sca,
 						t_color3 color);
 struct s_cyl_sca	cylinder_sca_gen(double diameter, double height);
+void				parse_cylinder(t_data *data, char **data_strs);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 16:03:13 by yolee             #+#    #+#             */
-/*   Updated: 2022/10/24 22:17:02 by yolee            ###   ########.fr       */
+/*   Updated: 2022/10/26 20:39:09 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
-# include "libft.h"
+# include "get_next_line.h"
 # include "mlx.h"
 # include "camera.h"
 # include "ambient_light.h"
@@ -28,6 +28,8 @@
 
 # define WINDOW_HEIGHT 1080
 # define WINDOW_WIDTH 1920
+# define KEYCODE_ESC 53
+# define KEYCODE_EXIT 17
 
 typedef struct s_pos
 {
@@ -62,8 +64,8 @@ typedef struct s_data
 	t_list				cylinder_list;
 }t_data;
 
-t_ray		gen_ray(t_pos pixel_pos);
-t_color3	get_ray_color(t_ray *ray);
-void		trace_ray(t_data *data, t_pos pixel_pos);
-
+void	exit_with_error(void);
+void	exit_with_custom_error(char	*custom_msg);
+int		is_file_ext_rt(char	*f_name);
+void	parse_data(t_data *data, char *filename);
 #endif

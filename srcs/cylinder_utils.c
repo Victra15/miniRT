@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 20:12:06 by yolee             #+#    #+#             */
-/*   Updated: 2022/10/24 22:00:21 by yolee            ###   ########.fr       */
+/*   Updated: 2022/10/26 21:23:30 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,9 @@ struct s_cyl_sca	cylinder_sca_gen(double diameter, double height)
 	cylinder_sca.diameter = diameter;
 	cylinder_sca.height = height;
 	return (cylinder_sca);
+}
+
+void	parse_cylinder(t_data *data, char **data_strs)
+{
+	
 }

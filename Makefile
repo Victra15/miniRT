@@ -6,7 +6,7 @@
 #    By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/14 15:50:14 by yolee             #+#    #+#              #
-#    Updated: 2022/10/24 22:10:32 by yolee            ###   ########.fr        #
+#    Updated: 2022/10/26 20:36:46 by yolee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,9 @@ SRCS_FILE = minirt.c \
 	raytrace.c \
 	vector_utils1.c \
 	vector_utils2.c \
+	parse.c \
+	error_handling.c \
+	get_next_line.c	\
 
 SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_FILE))
 OBJS = $(SRCS:.c=.o)

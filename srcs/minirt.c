@@ -6,17 +6,28 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 15:58:44 by yolee             #+#    #+#             */
-/*   Updated: 2022/10/24 22:08:38 by yolee            ###   ########.fr       */
+/*   Updated: 2022/10/26 20:18:51 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static int	mlx_exit(int keycode, void *param)
+static int	mlx_exit(t_data *data)
 {
-	(void)keycode;
-	(void)param;
+	mlx_destroy_image(data->mlx.mlx, data->img.img);
+	mlx_destroy_window(data->mlx.mlx, data->mlx.mlx_win);
 	exit(0);
+	return (0);
+}
+
+static int	mlx_key_exit(int keycode, t_data *data)
+{
+	if (keycode == KEYCODE_ESC)
+	{
+		mlx_destroy_image(data->mlx.mlx, data->img.img);
+		mlx_destroy_window(data->mlx.mlx, data->mlx.mlx_win);
+		exit(0);
+	}
 	return (0);
 }
 
@@ -42,7 +53,7 @@ static void	mlx_image_set(t_data *data)
 		pos.x = 0;
 		while (pos.x < WINDOW_WIDTH)
 		{
-			trace_ray(data, pos);
+			// trace_ray(data, pos);
 			pos.x++;
 		}
 		pos.y++;
@@ -59,13 +70,17 @@ int	main(int argc, char **argv)
 
 	(void)argv;
 	if (argc != 2)
-		write(2, "Error\n", 6);
+		exit_with_custom_error("invalid argument number.");
 	else
 	{
-		// parse_data(&data, argv[1]);
+		if (is_file_ext_rt(argv[1]))
+			parse_data(&data, argv[1]);
+		else
+			exit_with_custom_error("invalid filename.");
 		mlx_window_set(&data.mlx);
 		mlx_image_set(&data);
-		mlx_hook(data.mlx.mlx_win, 17, 0, mlx_exit, NULL);
+		mlx_hook(data.mlx.mlx_win, 17, 0, mlx_exit, &data);
+		mlx_key_hook(data.mlx.mlx_win, mlx_key_exit, &data);
 		mlx_loop(data.mlx.mlx);
 	}
 	return (0);
