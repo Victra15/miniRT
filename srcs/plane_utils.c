@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 20:11:46 by yolee             #+#    #+#             */
-/*   Updated: 2022/10/26 21:23:35 by yolee            ###   ########.fr       */
+/*   Updated: 2022/10/27 20:28:31 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,4 @@ struct s_plane	plane_gen(t_vec3 coor, t_vec3 orient, t_color3 color)
 	plane.orient = orient;
 	plane.color = color;
 	return (plane);
-}
-
-void	parse_plane(t_data *data, char **data_strs)
-{
-	
 }

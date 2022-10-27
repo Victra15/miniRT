@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 16:03:13 by yolee             #+#    #+#             */
-/*   Updated: 2022/10/26 20:39:09 by yolee            ###   ########.fr       */
+/*   Updated: 2022/10/27 20:57:51 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
+# include "libft.h"
 # include "get_next_line.h"
 # include "mlx.h"
 # include "camera.h"
@@ -25,6 +26,7 @@
 # include "plane.h"
 # include "ray.h"
 # include "sphere.h"
+# include "vector.h"
 
 # define WINDOW_HEIGHT 1080
 # define WINDOW_WIDTH 1920
@@ -64,8 +66,23 @@ typedef struct s_data
 	t_list				cylinder_list;
 }t_data;
 
+/* error_handling */
+int		ft_data_len(void **data);
+void	free_all(void **data);
 void	exit_with_error(void);
 void	exit_with_custom_error(char	*custom_msg);
 int		is_file_ext_rt(char	*f_name);
+
+/* parse */
 void	parse_data(t_data *data, char *filename);
+void	parse_ambient_light(t_data *data, char **data_strs);
+void	parse_cylinder(t_data *data, char **data_strs);
+void	parse_camera(t_data *data, char **data_strs);
+void	parse_light(t_data *data, char **data_strs);
+void	parse_plane(t_data *data, char **data_strs);
+void	parse_sphere(t_data *data, char **data_strs);
+
+/* parse_utils */
+double	ft_atof(const char *str);
+
 #endif

@@ -6,14 +6,13 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 21:25:08 by yolee             #+#    #+#             */
-/*   Updated: 2022/10/26 21:16:02 by yolee            ###   ########.fr       */
+/*   Updated: 2022/10/27 20:19:09 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_H
 # define VECTOR_H
 # include <math.h>
-# include "minirt.h"
 
 typedef struct s_dvec3	t_vec3;
 typedef struct s_dvec3	t_color3;

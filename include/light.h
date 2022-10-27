@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 22:00:42 by yolee             #+#    #+#             */
-/*   Updated: 2022/10/26 21:23:07 by yolee            ###   ########.fr       */
+/*   Updated: 2022/10/27 20:27:42 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ typedef struct s_light
 }t_light;
 
 struct s_light	light_gen(t_vec3 coor, double ratio, t_color3 color);
-void			parse_light(t_data *data, char **data_strs);
+
 
 #endif

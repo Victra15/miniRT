@@ -6,11 +6,37 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 19:32:56 by yolee             #+#    #+#             */
-/*   Updated: 2022/10/26 19:57:10 by yolee            ###   ########.fr       */
+/*   Updated: 2022/10/27 20:45:35 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+int	ft_data_len(void **data)
+{
+	size_t	len;
+
+	len = 0;
+	while (data && *data)
+	{
+		data++;
+		len++;
+	}
+	return (len);
+}
+
+void	free_all(void **data)
+{
+	void	**temp;
+
+	temp = data;
+	while (data && *data)
+	{
+		free(*data);
+		data++;
+	}
+	free(temp);
+}
 
 void	exit_with_error(void)
 {
