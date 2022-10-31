@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 16:03:13 by yolee             #+#    #+#             */
-/*   Updated: 2022/10/27 20:57:51 by yolee            ###   ########.fr       */
+/*   Updated: 2022/10/31 20:44:10 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,28 +61,33 @@ typedef struct s_data
 	t_camera			camera;
 	t_light				light;
 	t_ambient_light		am_light;
-	t_list				sphere_list;
-	t_list				plane_list;
-	t_list				cylinder_list;
+	t_list				*sphere_list;
+	t_list				*plane_list;
+	t_list				*cylinder_list;
 }t_data;
 
 /* error_handling */
-int		ft_data_len(void **data);
-void	free_all(void **data);
-void	exit_with_error(void);
-void	exit_with_custom_error(char	*custom_msg);
-int		is_file_ext_rt(char	*f_name);
+int			ft_data_len(void **data);
+void		input_checker(void **data, int data_len, char *str);
+void		free_all(void **data);
+void		exit_with_error(void);
+void		exit_with_custom_error(char	*custom_msg);
+int			is_file_ext_rt(char	*f_name);
+void		data_ptr_init(t_data *data);
 
 /* parse */
-void	parse_data(t_data *data, char *filename);
-void	parse_ambient_light(t_data *data, char **data_strs);
-void	parse_cylinder(t_data *data, char **data_strs);
-void	parse_camera(t_data *data, char **data_strs);
-void	parse_light(t_data *data, char **data_strs);
-void	parse_plane(t_data *data, char **data_strs);
-void	parse_sphere(t_data *data, char **data_strs);
+void		parse_data(t_data *data, char *filename);
+void		parse_ambient_light(t_data *data, char **data_strs);
+void		parse_cylinder(t_data *data, char **data_strs);
+void		parse_camera(t_data *data, char **data_strs);
+void		parse_light(t_data *data, char **data_strs);
+void		parse_plane(t_data *data, char **data_strs);
+void		parse_sphere(t_data *data, char **data_strs);
 
 /* parse_utils */
-double	ft_atof(const char *str);
+double		ft_atof(const char *str);
+t_vec3		input_vector(char **strs);
+t_color3	input_color(char **strs);
+double		input_ratio(char *str);
 
 #endif

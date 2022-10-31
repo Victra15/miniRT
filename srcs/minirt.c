@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 15:58:44 by yolee             #+#    #+#             */
-/*   Updated: 2022/10/31 15:52:01 by yolee            ###   ########.fr       */
+/*   Updated: 2022/10/31 20:27:54 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
+	data_ptr_init(&data);
 	(void)argv;
 	if (argc != 2)
 		exit_with_custom_error("invalid argument number.");
@@ -77,12 +78,11 @@ int	main(int argc, char **argv)
 			parse_data(&data, argv[1]);
 		else
 			exit_with_custom_error("invalid filename.");
-		parse_test_print(&data);
-		// mlx_window_set(&data.mlx);
-		// mlx_image_set(&data);
-		// mlx_hook(data.mlx.mlx_win, 17, 0, mlx_exit, &data);
-		// mlx_key_hook(data.mlx.mlx_win, mlx_key_exit, &data);
-		// mlx_loop(data.mlx.mlx);
+		mlx_window_set(&data.mlx);
+		mlx_image_set(&data);
+		mlx_hook(data.mlx.mlx_win, 17, 0, mlx_exit, &data);
+		mlx_key_hook(data.mlx.mlx_win, mlx_key_exit, &data);
+		mlx_loop(data.mlx.mlx);
 	}
 	return (0);
 }

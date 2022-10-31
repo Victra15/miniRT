@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 20:12:38 by yolee             #+#    #+#             */
-/*   Updated: 2022/10/27 20:26:03 by yolee            ###   ########.fr       */
+/*   Updated: 2022/10/31 18:05:34 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ typedef struct s_cyl_sca
 
 typedef struct s_cylinder
 {
-	t_vec3		coor;
+	t_vec3		cylinder_cen;
 	t_vec3		orient;
 	t_cyl_sca	sca;
 	t_color3	color;
 }t_cylinder;
 
-struct s_cylinder	cylinder_gen(t_vec3 coor,
+struct s_cylinder	cylinder_gen(t_vec3 cylinder_cen,
 						t_vec3 orient,
 						t_cyl_sca sca,
 						t_color3 color);

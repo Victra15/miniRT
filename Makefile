@@ -6,13 +6,13 @@
 #    By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/14 15:50:14 by yolee             #+#    #+#              #
-#    Updated: 2022/10/27 21:11:27 by yolee            ###   ########.fr        #
+#    Updated: 2022/10/31 20:37:26 by yolee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = miniRT
 CC = cc
-CFLAGS = -g
+CFLAGS = -Werror -Wall -Wextra -g
 MLXFLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 LIBFTFLAGS = -Llibft -lft
 INCLUDE = -I ./include
@@ -29,8 +29,10 @@ SRCS_FILE = minirt.c \
 	vector_utils1.c \
 	vector_utils2.c \
 	parse.c \
+	parse2.c \
 	parse_utils.c \
 	error_handling.c \
+	error_handling2.c \
 	get_next_line.c	\
 	ft_atof.c \
 

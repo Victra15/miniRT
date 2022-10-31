@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 20:12:41 by yolee             #+#    #+#             */
-/*   Updated: 2022/10/27 20:27:42 by yolee            ###   ########.fr       */
+/*   Updated: 2022/10/31 18:05:43 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,5 @@ typedef struct s_sphere
 }t_sphere;
 
 struct s_sphere	sphere_gen(t_vec3 cen, double diameter, t_color3 color);
-
 
 #endif
