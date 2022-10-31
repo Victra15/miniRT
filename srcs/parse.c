@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 19:28:30 by yolee             #+#    #+#             */
-/*   Updated: 2022/10/27 21:35:09 by yolee            ###   ########.fr       */
+/*   Updated: 2022/10/31 15:43:01 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	parse_ambient_light(t_data *data, char **data_strs)
 {
-	t_color3	col;
 	char		**color;
 
 	if (ft_data_len((void **)data_strs) != 2)
@@ -22,11 +21,10 @@ void	parse_ambient_light(t_data *data, char **data_strs)
 	color = ft_split(data_strs[1], ',');
 	if (ft_data_len((void **)color) != 3)
 		exit_with_custom_error("invalid file.");
-	col.x = ft_atof(color[0]) / 255.0;
-	col.y = ft_atof(color[1]) / 255.0;
-	col.z = ft_atof(color[2]) / 255.0;
 	data->am_light.ratio = ft_atof(data_strs[0]);
-	data->am_light.color = col;
+	data->am_light.color = v_gen(ft_atof(color[0]) / 255.0,
+			ft_atof(color[1]) / 255.0,
+			ft_atof(color[2]) / 255.0);
 	printf("\n%lf \n", ft_atof(data_strs[0]));
 	free_all((void **)color);
 	free_all((void **)data_strs);

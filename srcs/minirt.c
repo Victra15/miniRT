@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 15:58:44 by yolee             #+#    #+#             */
-/*   Updated: 2022/10/27 21:12:33 by yolee            ###   ########.fr       */
+/*   Updated: 2022/10/31 15:52:01 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,43 +62,6 @@ static void	mlx_image_set(t_data *data)
 		data->mlx.mlx_win,
 		data->img.img,
 		0, 0);
-}
-
-static void	parse_test_print(t_data *data)
-{	
-// 	t_camera			camera;
-	printf("camera > ");
-	printf("coor : (%lf, %lf, %lf), fov : (%lf), orient : (%lf, %lf, %lf)\n",
-		data->camera.coor.x,
-		data->camera.coor.y,
-		data->camera.coor.z,
-		data->camera.fov,
-		data->camera.orient.x,
-		data->camera.orient.y,
-		data->camera.orient.z
-		);
-// 	t_light				light;
-	printf("light > ");
-	printf("coor : (%lf, %lf, %lf), ratio : (%lf), color : (%lf, %lf, %lf)\n",
-		data->light.coor.x,
-		data->light.coor.y,
-		data->light.coor.z,
-		data->light.ratio,
-		data->light.color.x,
-		data->light.color.y,
-		data->light.color.z
-		);
-// 	t_ambient_light		am_light;
-	printf("am_light > ");
-	printf("ratio : (%lf),  color : (%lf %lf %lf)\n", 
-		data->am_light.ratio,
-		data->am_light.color.x,
-		data->am_light.color.y,
-		data->am_light.color.z
-		);
-// 	t_list				sphere_list;
-// 	t_list				plane_list;
-// 	t_list				cylinder_list;
 }
 
 int	main(int argc, char **argv)
