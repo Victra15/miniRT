@@ -6,7 +6,7 @@
 #    By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/14 15:50:14 by yolee             #+#    #+#              #
-#    Updated: 2022/10/31 20:37:26 by yolee            ###   ########.fr        #
+#    Updated: 2022/11/02 19:49:08 by yolee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ $(NAME) : $(OBJS)
 
 clean :
 	$(MAKE) clean -C ./mlx
-	$(MAKE) clean -C ./libft
+	$(MAKE) fclean -C ./libft
 	$(RM) $(OBJS)
 
 fclean : clean
