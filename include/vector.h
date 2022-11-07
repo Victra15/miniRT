@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 21:25:08 by yolee             #+#    #+#             */
-/*   Updated: 2022/10/27 20:19:09 by yolee            ###   ########.fr       */
+/*   Updated: 2022/11/03 04:06:58 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ struct s_dvec3	v_diff(struct s_dvec3 vec1, struct s_dvec3 vec2);
 struct s_dvec3	v_mult(struct s_dvec3 vec, double sca);
 double			v_abs(struct s_dvec3 vec);
 struct s_dvec3	v_unit(struct s_dvec3 vec);
+struct s_dvec3	v_cross(struct s_dvec3 vec1, struct s_dvec3 vec2);
 
 #endif

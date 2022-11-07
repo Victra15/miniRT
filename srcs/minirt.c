@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 15:58:44 by yolee             #+#    #+#             */
-/*   Updated: 2022/10/31 20:27:54 by yolee            ###   ########.fr       */
+/*   Updated: 2022/11/04 18:05:08 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	mlx_image_set(t_data *data)
 		pos.x = 0;
 		while (pos.x < WINDOW_WIDTH)
 		{
-			// trace_ray(data, pos);
+			trace_ray(data, pos);
 			pos.x++;
 		}
 		pos.y++;
@@ -69,7 +69,6 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	data_ptr_init(&data);
-	(void)argv;
 	if (argc != 2)
 		exit_with_custom_error("invalid argument number.");
 	else

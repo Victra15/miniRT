@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 16:03:13 by yolee             #+#    #+#             */
-/*   Updated: 2022/10/31 20:44:10 by yolee            ###   ########.fr       */
+/*   Updated: 2022/11/04 16:51:08 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,8 @@ double		ft_atof(const char *str);
 t_vec3		input_vector(char **strs);
 t_color3	input_color(char **strs);
 double		input_ratio(char *str);
+
+/* ray tracing */
+void		trace_ray(t_data *data, t_pos pixel_pos);
 
 #endif

@@ -6,11 +6,51 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 19:28:30 by yolee             #+#    #+#             */
-/*   Updated: 2022/10/31 20:50:30 by yolee            ###   ########.fr       */
+/*   Updated: 2022/11/04 17:23:45 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+static void	calc_viewport_vec(t_camera *camera)
+{
+	t_vec3			vec_y;
+	t_vec3			vec_z;
+
+	vec_z = v_gen(0, 0, 1);
+	vec_y = v_gen(0, 1, 0);
+	if (v_abs(v_cross(camera->orient, vec_z)) != 0.0)
+	{
+		camera->h_dir_vp = v_mult(v_unit(v_cross(camera->orient, vec_z)),
+				tan(camera->fov / 2));
+	}
+	else
+	{
+		camera->h_dir_vp = v_mult(v_unit(v_cross(camera->orient, vec_y)),
+				tan(camera->fov / 2));
+	}
+	camera->v_dir_vp = v_mult(v_unit(v_cross(camera->h_dir_vp, camera->orient)),
+			tan(camera->fov / 2) * (WINDOW_HEIGHT / WINDOW_WIDTH));
+}
+
+void	parse_camera(t_data *data, char **data_strs)
+{
+	char		**view_point;
+	char		**orient;
+
+	input_checker((void **)data_strs, 3, "invalid camera input.");
+	view_point = ft_split(data_strs[0], ',');
+	input_checker((void **)view_point, 3, "invalid camera view point.");
+	orient = ft_split(data_strs[1], ',');
+	input_checker((void **)orient, 3, "invalid camera orient.");
+	data->camera = camera_gen(input_vector(view_point),
+			v_unit(input_vector(orient)),
+			ft_atof(data_strs[2]));
+	calc_viewport_vec(&data->camera);
+	free_all((void **)view_point);
+	free_all((void **)orient);
+	return ;
+}
 
 void	parse_ambient_light(t_data *data, char **data_strs)
 {
