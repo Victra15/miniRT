@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 16:03:13 by yolee             #+#    #+#             */
-/*   Updated: 2022/11/04 16:51:08 by yolee            ###   ########.fr       */
+/*   Updated: 2022/11/10 01:35:26 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@
 # define WINDOW_WIDTH 1920
 # define KEYCODE_ESC 53
 # define KEYCODE_EXIT 17
+# define OBJ_SPHERE 0
+# define OBJ_PLANE 1
+# define OBJ_CYLINDER 2
 
 typedef struct s_pos
 {
@@ -53,6 +56,13 @@ typedef struct s_mlx
 	void	*mlx;
 	void	*mlx_win;
 }t_mlx;
+
+typedef struct s_obj
+{
+	int		obj_num;
+	void	*obj_ptr;
+	double	obj_distance;
+}t_obj;
 
 typedef struct s_data
 {
@@ -92,5 +102,8 @@ double		input_ratio(char *str);
 
 /* ray tracing */
 void		trace_ray(t_data *data, t_pos pixel_pos);
-
+t_obj		get_min_ray_len(t_data *data, t_ray ray)
+double		*get_ray_hit_to_sphere(t_sphere sphere, t_ray ray);
+double		get_ray_hit_to_plane(t_plane plane, t_ray ray);
+double		*get_ray_hit_to_cylinder(t_cylinder cylinder, t_ray ray);
 #endif

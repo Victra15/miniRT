@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere_utils.c                                     :+:      :+:    :+:   */
+/*   sphere.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 20:11:32 by yolee             #+#    #+#             */
-/*   Updated: 2022/10/27 20:28:40 by yolee            ###   ########.fr       */
+/*   Created: 2022/10/24 20:12:41 by yolee             #+#    #+#             */
+/*   Updated: 2022/11/07 23:30:20 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sphere.h"
+#ifndef SPHERE_H
+# define SPHERE_H
+# include "ambient_light.h"
+# include "light.h"
+# include "ray.h"
+# include "vector.h"
 
-struct s_sphere	sphere_gen(t_vec3 cen, double diameter, t_color3 color)
+typedef struct s_sphere
 {
-	struct s_sphere	sphere;
+	t_vec3		cen;
+	double		diameter;
+	t_color3	color;
+}t_sphere;
 
-	sphere.cen = cen;
-	sphere.diameter = diameter;
-	sphere.color = color;
-	return (sphere);
-}
+struct s_sphere	sphere_gen(t_vec3 cen, double diameter, t_color3 color);
+#endif

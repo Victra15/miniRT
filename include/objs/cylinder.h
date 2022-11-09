@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.h                                           :+:      :+:    :+:   */
+/*   cylinder.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 20:12:41 by yolee             #+#    #+#             */
-/*   Updated: 2022/10/31 18:05:43 by yolee            ###   ########.fr       */
+/*   Created: 2022/10/24 20:12:38 by yolee             #+#    #+#             */
+/*   Updated: 2022/11/09 17:16:42 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPHERE_H
-# define SPHERE_H
-# include "vector.h"
+#ifndef CYLINDER_H
+# define CYLINDER_H
+# include "ray.h"
 
-typedef struct s_sphere
+typedef struct s_cyl_sca
+{
+	double	diameter;
+	double	height;
+}t_cyl_sca;
+
+typedef struct s_cylinder
 {
 	t_vec3		cen;
-	double		diameter;
+	t_vec3		orient;
+	t_cyl_sca	sca;
 	t_color3	color;
-}t_sphere;
+}t_cylinder;
 
-struct s_sphere	sphere_gen(t_vec3 cen, double diameter, t_color3 color);
+struct s_cylinder	cylinder_gen(t_vec3 cen,
+						t_vec3 orient,
+						t_cyl_sca sca,
+						t_color3 color);
+struct s_cyl_sca	cylinder_sca_gen(double diameter, double height);
 
 #endif

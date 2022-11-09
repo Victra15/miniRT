@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   plane.h                                            :+:      :+:    :+:   */
+/*   plane_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 20:12:34 by yolee             #+#    #+#             */
-/*   Updated: 2022/10/31 18:05:36 by yolee            ###   ########.fr       */
+/*   Created: 2022/10/24 20:11:46 by yolee             #+#    #+#             */
+/*   Updated: 2022/11/09 16:51:46 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PLANE_H
-# define PLANE_H
-# include "vector.h"
+#include "plane.h"
 
-typedef struct s_plane
+struct s_plane	plane_gen(t_vec3 plane_point, t_vec3 norm, t_color3 color)
 {
-	t_vec3			plane_point;
-	t_vec3			orient;
-	t_color3		color;
-}t_plane;
+	struct s_plane	plane;
 
-struct s_plane	plane_gen(t_vec3 plane_point, t_vec3 orient, t_color3 color);
-
-#endif
+	plane.plane_point = plane_point;
+	plane.norm = norm;
+	plane.color = color;
+	return (plane);
+}

@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 21:32:59 by yolee             #+#    #+#             */
-/*   Updated: 2022/10/27 20:21:22 by yolee            ###   ########.fr       */
+/*   Updated: 2022/11/07 22:49:45 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ double	v_abs(struct s_dvec3 vec)
 {
 	double	result;
 
-	result = pow(vec.x, 2) + pow(vec.y, 2) + pow(vec.z, 2);
+	result = v_inner(vec, vec);
 	result = sqrt(result);
 	return (result);
 }

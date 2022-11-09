@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   plane_utils.c                                      :+:      :+:    :+:   */
+/*   sphere_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 20:11:46 by yolee             #+#    #+#             */
-/*   Updated: 2022/10/27 20:28:31 by yolee            ###   ########.fr       */
+/*   Created: 2022/10/24 20:11:32 by yolee             #+#    #+#             */
+/*   Updated: 2022/11/07 23:30:38 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "plane.h"
+#include "sphere.h"
 
-struct s_plane	plane_gen(t_vec3 plane_point, t_vec3 orient, t_color3 color)
+struct s_sphere	sphere_gen(t_vec3 cen, double diameter, t_color3 color)
 {
-	struct s_plane	plane;
+	struct s_sphere	sphere;
 
-	plane.plane_point = plane_point;
-	plane.orient = orient;
-	plane.color = color;
-	return (plane);
+	sphere.cen = cen;
+	sphere.diameter = diameter;
+	sphere.color = color;
+	return (sphere);
 }
