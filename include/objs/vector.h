@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 21:25:08 by yolee             #+#    #+#             */
-/*   Updated: 2022/11/07 22:46:33 by yolee            ###   ########.fr       */
+/*   Updated: 2022/11/11 07:19:38 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,7 @@ struct s_dvec3	v_mult(struct s_dvec3 vec, double sca);
 double			v_abs(struct s_dvec3 vec);
 struct s_dvec3	v_unit(struct s_dvec3 vec);
 struct s_dvec3	v_cross(struct s_dvec3 vec1, struct s_dvec3 vec2);
+struct s_dvec3	v_sum_color(struct s_dvec3 vec1, struct s_dvec3 vec2);
+struct s_dvec3	v_mult_color(struct s_dvec3 vec1, double sca);
 
 #endif

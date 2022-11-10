@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 21:42:54 by yolee             #+#    #+#             */
-/*   Updated: 2022/11/03 04:05:07 by yolee            ###   ########.fr       */
+/*   Updated: 2022/11/11 07:20:08 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,31 @@ struct s_dvec3	v_gen(double x, double y, double z)
 	result.y = y;
 	result.z = z;
 	return (result);
+}
+
+static struct s_dvec3	v_color_handle(struct s_dvec3 vec)
+{
+	if (vec.x > 1.0)
+		vec.x = 1.0;
+	if (vec.y > 1.0)
+		vec.y = 1.0;
+	if (vec.z > 1.0)
+		vec.z = 1.0;
+	if (vec.x < 0.0)
+		vec.x = 0.0;
+	if (vec.y < 0.0)
+		vec.y = 0.0;
+	if (vec.z < 0.0)
+		vec.z = 0.0;
+	return (vec);
+}
+
+struct s_dvec3	v_sum_color(struct s_dvec3 vec1, struct s_dvec3 vec2)
+{
+	return (v_color_handle(v_sum(vec1, vec2)));
+}
+
+struct s_dvec3	v_mult_color(struct s_dvec3 vec1, double sca)
+{
+	return (v_color_handle(v_mult(vec1, sca)));
 }

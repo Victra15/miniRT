@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 22:41:54 by yolee             #+#    #+#             */
-/*   Updated: 2022/11/11 06:31:09 by yolee            ###   ########.fr       */
+/*   Updated: 2022/11/11 07:30:49 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,30 @@ static t_vec3	get_ray_dir(t_camera camera, t_pos pixel_pos)
 	);
 }
 
+static t_color3	calc_ray_color(t_data *data, t_ray ray, t_obj min_obj)
+{
+	t_vec3		hit_point;
+	t_color3	result;
+
+	result = v_gen(0.0, 0.0, 0.0);
+	hit_point = v_sum(v_mult(ray.dir, min_obj.obj_distance), ray.orig);
+	if (min_obj.obj_num == OBJ_SPHERE)
+	{
+		result = v_sum_color(v_mult(((t_sphere *)min_obj.obj_ptr)->color, data->am_light.ratio),
+						v_mult_color(((t_sphere *)min_obj.obj_ptr)->color, v_inner(v_unit(v_diff(data->light.light_point, hit_point)),
+																			v_unit(v_diff(hit_point, ((t_sphere *)min_obj.obj_ptr)->cen)))));
+		// result = v_mult_color(((t_sphere *)min_obj.obj_ptr)->color, v_inner(v_unit(v_diff(data->light.light_point, hit_point)),
+																			// v_unit(v_diff(hit_point, ((t_sphere *)min_obj.obj_ptr)->cen))));
+	}
+	else if (min_obj.obj_num == OBJ_PLANE)
+	{
+		result = v_sum_color(v_mult(((t_plane *)min_obj.obj_ptr)->color, data->am_light.ratio),
+						v_mult_color(((t_plane *)min_obj.obj_ptr)->color, v_inner(v_unit(v_diff(data->light.light_point, hit_point)),
+																			((t_plane *)min_obj.obj_ptr)->norm)));
+	}
+	return (result);
+}
+
 static t_color3	get_ray_color(t_data *data, t_ray pixel_ray)
 {
 	t_color3	ray_color;
@@ -53,12 +77,8 @@ static t_color3	get_ray_color(t_data *data, t_ray pixel_ray)
 	ray_color = v_gen(0.0, 0.0, 0.0);
 	min_obj = get_min_ray_len(data, pixel_ray);
 	if (min_obj.obj_distance != -1.0)
-	{
-		if (min_obj.obj_num == OBJ_SPHERE)
-			ray_color = ((t_sphere *)min_obj.obj_ptr)->color;
-		else if (min_obj.obj_num == OBJ_PLANE)
-			ray_color = ((t_plane *)min_obj.obj_ptr)->color;
-	}
+		ray_color = calc_ray_color(data, pixel_ray, min_obj);
+
 	/*
 		calc ray_color;
 		내용 : min_obj을 이용해서 ray_color 계산하는 부분
