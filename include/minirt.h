@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 16:03:13 by yolee             #+#    #+#             */
-/*   Updated: 2022/11/10 01:35:26 by yolee            ###   ########.fr       */
+/*   Updated: 2022/11/11 05:49:34 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 # include "sphere.h"
 # include "vector.h"
 
-# define WINDOW_HEIGHT 1080
-# define WINDOW_WIDTH 1920
+# define WINDOW_HEIGHT 720
+# define WINDOW_WIDTH 1024
 # define KEYCODE_ESC 53
 # define KEYCODE_EXIT 17
 # define OBJ_SPHERE 0
@@ -102,8 +102,12 @@ double		input_ratio(char *str);
 
 /* ray tracing */
 void		trace_ray(t_data *data, t_pos pixel_pos);
-t_obj		get_min_ray_len(t_data *data, t_ray ray)
-double		*get_ray_hit_to_sphere(t_sphere sphere, t_ray ray);
+t_obj		get_min_ray_len(t_data *data, t_ray ray);
+double		get_ray_hit_to_sphere(t_sphere sphere, t_ray ray);
 double		get_ray_hit_to_plane(t_plane plane, t_ray ray);
-double		*get_ray_hit_to_cylinder(t_cylinder cylinder, t_ray ray);
+// double		get_ray_hit_to_cylinder(t_cylinder cylinder, t_ray ray);
+
+/* ray tracing_utils */
+void		min_ray_len(double ray_len, t_obj *min_obj, void *obj_ptr, int type);
+
 #endif

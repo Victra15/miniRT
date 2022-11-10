@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 22:47:02 by yolee             #+#    #+#             */
-/*   Updated: 2022/11/10 01:29:23 by yolee            ###   ########.fr       */
+/*   Updated: 2022/11/11 05:10:29 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static t_ray	get_proj_ray(t_plane plane, t_ray ray)
 
 static double	*get_ray_len_for_cylinder(double ray_len_p[2],
 		double h[2],
-		t_cylinder cyl
+		t_cylinder cyl,
 		t_ray ray)
 {
 	double	ray_len[2];
@@ -51,7 +51,7 @@ static double	*get_ray_len_for_cylinder(double ray_len_p[2],
 	ray_len[1] = sqrt(pow(ray_len_p[1], 2) + pow(h[1], 2));
 	d[0] = h[0] - d_n;
 	d[1] = h[1] - d_n;
-	if (fabs(d[0]) > c_height / 2 && fabs(d[1]) < c_height / 2)
+	if (fabs(d[0]) > cyl.sca.height / 2 && fabs(d[1]) < cyl.sca.height / 2)
 	{
 		if (d[0] > 0.0)
 		{
@@ -69,13 +69,37 @@ static double	*get_ray_len_for_cylinder(double ray_len_p[2],
 	return (ray_len);
 }
 
+static double	get_ray_hit_to_sphere(t_sphere sphere, t_ray ray_proj)
+{
+	double	ray_len[2];
+	t_vec3	vec_o;
+	double	r;
+	double	d;
+
+	ray_len[0] = -1.0;
+	ray_len[1] = -1.0;
+	r = sphere.diameter / 2;
+	vec_o = v_diff(sphere.cen, ray_proj.orig);
+	d = sqrt(v_inner(vec_o, vec_o) - pow(v_inner(vec_o, ray_proj.dir), 2));
+	if (r > d)
+	{
+		ray_len[0] = v_inner(vec_o, ray_proj.dir) - sqrt((r * r) - (d * d));
+		ray_len[1] = v_inner(vec_o, ray_proj.dir) + sqrt((r * r) - (d * d));
+		if (ray_len[0] > ray_len[1] && ray_len[1] >= 0)
+			return (ray_len[1]);
+		else if (ray_len[1] > ray_len[0] && ray_len[0] >= 0)
+			return (ray_len[0]);
+	}
+	return (-1.0);
+}
+
 /*
 get length ray origin to ray's hit point in cylinder
 h : height
 */
-double	*get_ray_hit_to_cylinder(t_cylinder cyl, t_ray ray)
+double	get_ray_hit_to_cylinder(t_cylinder cyl, t_ray ray)
 {
-	double	*ray_len_p;
+	double	ray_len_p;
 	double	h[2];
 	t_ray	ray_proj;
 	double	d_n;
@@ -88,5 +112,5 @@ double	*get_ray_hit_to_cylinder(t_cylinder cyl, t_ray ray)
 		/ v_inner(ray.dir, ray_proj.dir);
 	h[1] = ray_len_p[1] * v_inner(ray.dir, cyl.orient)
 		/ v_inner(ray.dir, ray_proj.dir);
-	return (get_ray_len_for_cylinder(ray_len_p, h, cyl));
+	return (get_ray_len_for_cylinder(ray_len_p, h, cyl, ray));
 }

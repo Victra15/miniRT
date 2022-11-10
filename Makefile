@@ -6,7 +6,7 @@
 #    By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/14 15:50:14 by yolee             #+#    #+#              #
-#    Updated: 2022/11/09 23:06:02 by yolee            ###   ########.fr        #
+#    Updated: 2022/11/11 05:11:16 by yolee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ SRCS_FILE = minirt.c \
 	error_handling2.c \
 	get_next_line.c	\
 	raytrace_utils.c \
-	raytrace_utils2.c \
+	# raytrace_utils2.c \
 
 SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_FILE))
 SRCS += $(addprefix $(SRCS_DIR)/$(OBJECT_CODE_DIR)/, $(OBJECT_CODE))

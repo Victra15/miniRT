@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 19:28:30 by yolee             #+#    #+#             */
-/*   Updated: 2022/11/04 17:23:45 by yolee            ###   ########.fr       */
+/*   Updated: 2022/11/11 05:42:06 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	calc_viewport_vec(t_camera *camera)
 				tan(camera->fov / 2));
 	}
 	camera->v_dir_vp = v_mult(v_unit(v_cross(camera->h_dir_vp, camera->orient)),
-			tan(camera->fov / 2) * (WINDOW_HEIGHT / WINDOW_WIDTH));
+			tan(camera->fov / 2) * ((double)WINDOW_HEIGHT / (double)WINDOW_WIDTH));
 }
 
 void	parse_camera(t_data *data, char **data_strs)
