@@ -25,6 +25,26 @@ static void	init_obj(t_obj *obj,
 /*
 0보다 작지않은 ray_len 중에서 가장 작은 ray_len를 뽑아서 t_obj초기화 하는 함수
 */
+void	min_ray_len(double *ray_len, t_obj *min_obj, void *obj_ptr, int type)
+{
+	int	size;
+	double	min;
+
+	size = sizeof(ray_len) / sizeof(double);
+	min = DBL_MAX;
+	while (size--)
+	{
+		if (*ray_len >= 0 && min > *ray_len)
+			min = *ray_len;
+		if (size > 0)
+			ray_len++;
+	}
+	min_obj->obj_num = type;
+	min_obj->obj_ptr = obj_ptr;
+	min_obj->obj_destance = min;
+	return ;
+}
+
 t_obj	get_min_ray_len(t_data *data, t_ray ray)
 {
 	double	*ray_len_arr;
@@ -37,6 +57,7 @@ t_obj	get_min_ray_len(t_data *data, t_ray ray)
 	{
 		ray_len_arr = get_ray_hit_to_sphere((*(t_sphere *)iter->content), ray);
 		// obj init
+		min_ray_len(ray_len_arr, &min_obj, iter->content, OBJ_SPHERE);
 		iter = iter->next;
 	}
 	iter = data->plane_list;
@@ -44,6 +65,7 @@ t_obj	get_min_ray_len(t_data *data, t_ray ray)
 	{
 		ray_len = get_ray_hit_to_plane(*(t_plane *)iter->content, ray);
 		// obj init
+		min_ray_len(&ray_len, &min_obj, iter->content, OBJ_PLANE);
 		iter = iter->next;
 	}
 	iter = data->cylinder_list;
@@ -51,6 +73,7 @@ t_obj	get_min_ray_len(t_data *data, t_ray ray)
 	{
 		ray_len_arr = get_ray_hit_to_cylinder(*(t_cylinder *)iter->content, ray);
 		// obj init
+		min_ray_len(ray_len_arr, &min_obj, iter->content, OBJ_CYLINDER);
 		iter = iter->next;
 	}
 	return (min_obj);
