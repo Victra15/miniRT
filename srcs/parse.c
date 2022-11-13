@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 19:28:30 by yolee             #+#    #+#             */
-/*   Updated: 2022/11/11 05:42:06 by yolee            ###   ########.fr       */
+/*   Updated: 2022/11/13 22:22:16 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,25 @@ static void	calc_viewport_vec(t_camera *camera)
 {
 	t_vec3			vec_y;
 	t_vec3			vec_z;
+	double			h_vec_len;
+	double			v_vec_len;
 
 	vec_z = v_gen(0, 0, 1);
 	vec_y = v_gen(0, 1, 0);
+	h_vec_len = tan(camera->fov / 2);
+	v_vec_len = h_vec_len * ((double)WINDOW_HEIGHT / (double)WINDOW_WIDTH);
 	if (v_abs(v_cross(camera->orient, vec_z)) != 0.0)
 	{
-		camera->h_dir_vp = v_mult(v_unit(v_cross(camera->orient, vec_z)),
-				tan(camera->fov / 2));
+		camera->h_dir_vp = v_unit(v_cross(camera->orient, vec_z));
+		camera->h_dir_vp = v_mult(camera->h_dir_vp, h_vec_len);
 	}
 	else
 	{
-		camera->h_dir_vp = v_mult(v_unit(v_cross(camera->orient, vec_y)),
-				tan(camera->fov / 2));
+		camera->h_dir_vp = v_unit(v_cross(camera->orient, vec_z));
+		camera->h_dir_vp = v_mult(camera->h_dir_vp, h_vec_len);
 	}
-	camera->v_dir_vp = v_mult(v_unit(v_cross(camera->h_dir_vp, camera->orient)),
-			tan(camera->fov / 2) * ((double)WINDOW_HEIGHT / (double)WINDOW_WIDTH));
+	camera->v_dir_vp = v_unit(v_cross(camera->h_dir_vp, camera->orient));
+	camera->v_dir_vp = v_mult(camera->v_dir_vp, v_vec_len);
 }
 
 void	parse_camera(t_data *data, char **data_strs)

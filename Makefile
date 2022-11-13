@@ -6,7 +6,7 @@
 #    By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/14 15:50:14 by yolee             #+#    #+#              #
-#    Updated: 2022/11/11 05:11:16 by yolee            ###   ########.fr        #
+#    Updated: 2022/11/13 23:58:44 by yolee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ OBJECT_CODE = ray_utils.c \
 	cylinder_utils.c \
 	vector_utils1.c \
 	vector_utils2.c \
+	color_utils.c \
 	
 SRCS_DIR = srcs
 SRCS_FILE = minirt.c \
@@ -38,7 +39,11 @@ SRCS_FILE = minirt.c \
 	error_handling2.c \
 	get_next_line.c	\
 	raytrace_utils.c \
-	# raytrace_utils2.c \
+	raytrace_utils2.c \
+	raytrace_plane.c \
+	raytrace_sphere.c \
+	raytrace_cylinder.c \
+	raytrace_cylinder2.c \
 
 SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_FILE))
 SRCS += $(addprefix $(SRCS_DIR)/$(OBJECT_CODE_DIR)/, $(OBJECT_CODE))

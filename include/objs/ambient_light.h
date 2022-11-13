@@ -6,13 +6,14 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 21:53:43 by yolee             #+#    #+#             */
-/*   Updated: 2022/10/27 20:30:38 by yolee            ###   ########.fr       */
+/*   Updated: 2022/11/13 22:13:31 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef AMBIENT_LIGHT_H
 # define AMBIENT_LIGHT_H
 # include "vector.h"
+# include "color.h"
 
 typedef struct s_ambient_light
 {

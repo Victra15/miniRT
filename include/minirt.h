@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 16:03:13 by yolee             #+#    #+#             */
-/*   Updated: 2022/11/11 05:49:34 by yolee            ###   ########.fr       */
+/*   Updated: 2022/11/13 23:44:56 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include "ray.h"
 # include "sphere.h"
 # include "vector.h"
+# include "color.h"
 
 # define WINDOW_HEIGHT 720
 # define WINDOW_WIDTH 1024
@@ -102,12 +103,22 @@ double		input_ratio(char *str);
 
 /* ray tracing */
 void		trace_ray(t_data *data, t_pos pixel_pos);
-t_obj		get_min_ray_len(t_data *data, t_ray ray);
 double		get_ray_hit_to_sphere(t_sphere sphere, t_ray ray);
 double		get_ray_hit_to_plane(t_plane plane, t_ray ray);
-// double		get_ray_hit_to_cylinder(t_cylinder cylinder, t_ray ray);
+double		get_ray_hit_to_cylinder(t_cylinder cylinder, t_ray ray);
+t_color3	get_plane_ray_color(t_data *data,
+				t_plane *plane,
+				t_vec3 hit_point);
+t_color3	get_sphere_ray_color(t_data *data,
+				t_sphere *sphere,
+				t_vec3 hit_point);
+t_color3	get_cylinder_ray_color(t_data *data,
+				t_cylinder *cylinder,
+				t_vec3 hit_point);	
 
 /* ray tracing_utils */
-void		min_ray_len(double ray_len, t_obj *min_obj, void *obj_ptr, int type);
+t_obj		get_min_ray_len(t_data *data, t_ray ray);
+t_color3	calc_ray_color(t_data *data, t_ray ray, t_obj min_obj);
+int			is_ray_shadowed(t_data *data, t_vec3 hit_point);
 
 #endif

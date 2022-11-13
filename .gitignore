@@ -4,3 +4,4 @@ mlx/*.o
 *.o
 miniRT
 *.dSYM
+test.rt

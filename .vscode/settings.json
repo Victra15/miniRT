@@ -1,5 +1,6 @@
 {
 	"files.associations": {
-		"vector.h": "c"
+		"vector.h": "c",
+		"ambient_light.h": "c"
 	}
 }

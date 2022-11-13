@@ -6,13 +6,14 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 22:00:42 by yolee             #+#    #+#             */
-/*   Updated: 2022/11/07 22:04:10 by yolee            ###   ########.fr       */
+/*   Updated: 2022/11/13 22:13:12 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIGHT_H
 # define LIGHT_H
 # include "vector.h"
+# include "color.h"
 
 typedef struct s_light
 {
