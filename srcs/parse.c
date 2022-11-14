@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 19:28:30 by yolee             #+#    #+#             */
-/*   Updated: 2022/11/13 22:22:16 by yolee            ###   ########.fr       */
+/*   Updated: 2022/11/14 17:03:06 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	calc_viewport_vec(t_camera *camera)
 	}
 	else
 	{
-		camera->h_dir_vp = v_unit(v_cross(camera->orient, vec_z));
+		camera->h_dir_vp = v_unit(v_cross(camera->orient, vec_y));
 		camera->h_dir_vp = v_mult(camera->h_dir_vp, h_vec_len);
 	}
 	camera->v_dir_vp = v_unit(v_cross(camera->h_dir_vp, camera->orient));

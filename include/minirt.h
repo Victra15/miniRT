@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 16:03:13 by yolee             #+#    #+#             */
-/*   Updated: 2022/11/13 23:44:56 by yolee            ###   ########.fr       */
+/*   Updated: 2022/11/14 17:19:48 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,6 @@ t_color3	get_cylinder_ray_color(t_data *data,
 /* ray tracing_utils */
 t_obj		get_min_ray_len(t_data *data, t_ray ray);
 t_color3	calc_ray_color(t_data *data, t_ray ray, t_obj min_obj);
-int			is_ray_shadowed(t_data *data, t_vec3 hit_point);
+int			is_ray_shadowed(t_data *data, t_vec3 hit_point, t_obj min_obj);
 
 #endif

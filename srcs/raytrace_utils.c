@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 23:31:04 by yolee             #+#    #+#             */
-/*   Updated: 2022/11/13 23:39:14 by yolee            ###   ########.fr       */
+/*   Updated: 2022/11/14 17:21:10 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_color3	calc_ray_color(t_data *data, t_ray ray, t_obj min_obj)
 	t_vec3		hit_point;
 
 	hit_point = v_sum(v_mult(ray.dir, min_obj.obj_distance), ray.orig);
-	if (is_ray_shadowed(data, hit_point))
+	if (is_ray_shadowed(data, hit_point, min_obj))
 		return (c_gen(0.0, 0.0, 0.0));
 	else if (min_obj.obj_num == OBJ_SPHERE)
 		return (get_sphere_ray_color(data, min_obj.obj_ptr, hit_point));

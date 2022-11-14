@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 22:47:02 by yolee             #+#    #+#             */
-/*   Updated: 2022/11/14 00:02:24 by yolee            ###   ########.fr       */
+/*   Updated: 2022/11/14 18:37:20 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,13 +128,13 @@ static void	get_ray_hit(double *ray_len,
 	h[1] = ray_len[1] * v_inner(ray.dir, cyl.orient);
 	d[0] = h[0] - d_n;
 	d[1] = h[1] - d_n;
-	if (d[0] > cyl.sca.height / 2)
+	if (d[0] > cyl.sca.height / 2 && d[1] <= cyl.sca.height / 2)
 			ray_len[0] = get_ray_hit_to_plane(cyl_top, ray);
-	else if (d[0] < -cyl.sca.height / 2)
+	else if (d[0] < -cyl.sca.height / 2 && d[1] >= -cyl.sca.height / 2)
 			ray_len[0] = get_ray_hit_to_plane(cyl_bottom, ray);
-	if (d[1] > cyl.sca.height / 2)
+	if (d[1] > cyl.sca.height / 2 && d[0] <= cyl.sca.height / 2)
 			ray_len[1] = get_ray_hit_to_plane(cyl_top, ray);
-	else if (d[1] < -cyl.sca.height / 2)
+	else if (d[1] < -cyl.sca.height / 2 && d[0] >= -cyl.sca.height / 2)
 			ray_len[1] = get_ray_hit_to_plane(cyl_bottom, ray);
 }
 
