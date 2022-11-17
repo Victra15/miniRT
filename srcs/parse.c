@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 19:28:30 by yolee             #+#    #+#             */
-/*   Updated: 2022/11/17 18:42:46 by yolee            ###   ########.fr       */
+/*   Updated: 2022/11/17 18:57:26 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	parse_camera(t_data *data, char **data_strs)
 	calc_viewport_vec(&data->camera);
 	free_all((void **)view_point);
 	free_all((void **)orient);
+	free_all((void **)data_strs);
 	return ;
 }
 
@@ -101,12 +102,11 @@ void	parse_data(t_data *data, char *filename)
 	else
 	{
 		line = get_next_line(fd);
-		free(line);
 		while (line)
 		{
 			parse_line(data, line);
-			line = get_next_line(fd);
 			free(line);
+			line = get_next_line(fd);
 		}
 	}
 	return ;

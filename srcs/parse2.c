@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 20:29:05 by yolee             #+#    #+#             */
-/*   Updated: 2022/11/04 16:48:33 by yolee            ###   ########.fr       */
+/*   Updated: 2022/11/17 18:57:24 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	parse_light(t_data *data, char **data_strs)
 			input_color(color));
 	free_all((void **)light_point);
 	free_all((void **)color);
-	return ;
+	free_all((void **)data_strs);
 }
 
 void	parse_sphere(t_data *data, char **data_strs)
@@ -48,6 +48,7 @@ void	parse_sphere(t_data *data, char **data_strs)
 	ft_lstadd_back(&data->sphere_list, ft_lstnew(sphere));
 	free_all((void **)cen);
 	free_all((void **)color);
+	free_all((void **)data_strs);
 }
 
 void	parse_plane(t_data *data, char **data_strs)
@@ -72,7 +73,7 @@ void	parse_plane(t_data *data, char **data_strs)
 	free_all((void **)plane_point);
 	free_all((void **)orient);
 	free_all((void **)color);
-	return ;
+	free_all((void **)data_strs);
 }
 
 void	parse_cylinder(t_data *data, char **data_strs)
@@ -99,4 +100,5 @@ void	parse_cylinder(t_data *data, char **data_strs)
 	free_all((void **)cylinder_cen);
 	free_all((void **)orient);
 	free_all((void **)color);
+	free_all((void **)data_strs);
 }
