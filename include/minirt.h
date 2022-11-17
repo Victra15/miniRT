@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 16:03:13 by yolee             #+#    #+#             */
-/*   Updated: 2022/11/14 17:19:48 by yolee            ###   ########.fr       */
+/*   Updated: 2022/11/17 17:54:48 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define OBJ_SPHERE 0
 # define OBJ_PLANE 1
 # define OBJ_CYLINDER 2
+# define EPSILON 0.0000001
 
 typedef struct s_pos
 {

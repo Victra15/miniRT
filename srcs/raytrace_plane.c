@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 20:08:12 by yolee             #+#    #+#             */
-/*   Updated: 2022/11/14 00:01:03 by yolee            ###   ########.fr       */
+/*   Updated: 2022/11/14 22:01:52 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_color3	get_plane_ray_color(t_data *data,
 	double		light_diffuse;
 
 	light_diffuse = v_inner(
-			v_unit(v_diff(hit_point, data->light.light_point)), plane->norm);
+			v_unit(v_diff(data->light.light_point, hit_point)), plane->norm);
 	light_color = c_sum(c_mult_sca(data->am_light.color, data->am_light.ratio),
 			c_mult_sca(data->light.color, light_diffuse));
 	return (c_mult(light_color, plane->color));

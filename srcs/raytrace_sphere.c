@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 20:06:57 by yolee             #+#    #+#             */
-/*   Updated: 2022/11/13 23:41:19 by yolee            ###   ########.fr       */
+/*   Updated: 2022/11/14 21:41:06 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ t_color3	get_sphere_ray_color(t_data *data,
 	double		light_diffuse;
 
 	light_diffuse = v_inner(
-			v_unit(v_diff(hit_point, data->light.light_point)),
+			v_unit(v_diff(data->light.light_point, hit_point)),
 			v_unit(v_diff(hit_point, sphere->cen)));
 	light_color = c_sum(c_mult_sca(data->am_light.color, data->am_light.ratio),
 			c_mult_sca(data->light.color, light_diffuse));

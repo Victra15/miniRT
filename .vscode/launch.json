@@ -9,7 +9,7 @@
 			"request": "launch",
 			"name": "Debug",
 			"program": "${workspaceFolder}/miniRT",
-			"args": ["test_cyl.rt"],
+			"args": ["test.rt"],
 			"cwd": "${workspaceFolder}",
 			"preLaunchTask": "C/C++: gcc 활성 파일 빌드"
 		}

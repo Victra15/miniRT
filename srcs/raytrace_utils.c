@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 23:31:04 by yolee             #+#    #+#             */
-/*   Updated: 2022/11/14 17:21:10 by yolee            ###   ########.fr       */
+/*   Updated: 2022/11/14 21:26:30 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ t_obj	get_min_ray_len(t_data *data, t_ray ray)
 	t_obj	min_obj;
 
 	min_obj.obj_distance = -1.0;
+	min_obj.obj_ptr = NULL;
+	min_obj.obj_num = -1;
 	iter_obj_list(data->sphere_list, OBJ_SPHERE, &min_obj, ray);
 	iter_obj_list(data->plane_list, OBJ_PLANE, &min_obj, ray);
 	iter_obj_list(data->cylinder_list, OBJ_CYLINDER, &min_obj, ray);
@@ -80,5 +82,5 @@ t_color3	calc_ray_color(t_data *data, t_ray ray, t_obj min_obj)
 	else if (min_obj.obj_num == OBJ_CYLINDER)
 		return (get_cylinder_ray_color(data, min_obj.obj_ptr, hit_point));
 	else
-		return (c_gen(0.0, 0.0, 0.0));
+		return (c_gen(0.0, 0.1, 0.2));
 }
