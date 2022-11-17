@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 19:28:30 by yolee             #+#    #+#             */
-/*   Updated: 2022/11/14 17:03:06 by yolee            ###   ########.fr       */
+/*   Updated: 2022/11/17 18:42:46 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,12 @@ void	parse_data(t_data *data, char *filename)
 	else
 	{
 		line = get_next_line(fd);
+		free(line);
 		while (line)
 		{
 			parse_line(data, line);
 			line = get_next_line(fd);
+			free(line);
 		}
 	}
 	return ;

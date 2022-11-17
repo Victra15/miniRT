@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 16:03:13 by yolee             #+#    #+#             */
-/*   Updated: 2022/11/17 17:54:48 by yolee            ###   ########.fr       */
+/*   Updated: 2022/11/17 18:09:32 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ double		input_ratio(char *str);
 void		trace_ray(t_data *data, t_pos pixel_pos);
 double		get_ray_hit_to_sphere(t_sphere sphere, t_ray ray);
 double		get_ray_hit_to_plane(t_plane plane, t_ray ray);
+int			select_cyl_ray_len_return(double ray_len0, double ray_len1);
 double		get_ray_hit_to_cylinder(t_cylinder cylinder, t_ray ray);
 t_color3	get_plane_ray_color(t_data *data,
 				t_plane *plane,

@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 22:47:02 by yolee             #+#    #+#             */
-/*   Updated: 2022/11/14 21:47:52 by yolee            ###   ########.fr       */
+/*   Updated: 2022/11/17 18:41:27 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,44 @@ static int	get_proj_ray_hit(double *ray_len_p,
 }
 
 /*
+function : get ray hit in cylinder top or bottom plain
+
+parameters
+d1 : distance cylinder center plain to first hit point
+d2 : distance cylinder center plain to second hit point
+h : cylinder height
+
+variables
+none
+		
+return value :	if ray hit to top plain, returns 0
+				and hit to bottom plain, returns 1
+				and not hit, returns -1
+				and hit to cylinder side, returns 2
+*/
+static int	get_ray_hit_cyl_plane(double d1,
+		double d2,
+		double h)
+{
+	if (d1 > h / 2)
+	{
+		if (d2 <= h / 2)
+			return (0);
+		else
+			return (-1);
+	}
+	else if (d1 < -h / 2)
+	{
+		if (d2 >= -h / 2)
+			return (1);
+		else
+			return (-1);
+	}
+	else
+		return (2);
+}
+
+/*
 function : get length ray origin to hit point in cylinder
 
 parameters
@@ -114,7 +152,6 @@ static void	get_ray_hit(double *ray_len,
 {
 	t_plane	cyl_top;
 	t_plane	cyl_bottom;
-	double	h[2];
 	double	d[2];
 	double	d_n;
 
@@ -124,66 +161,20 @@ static void	get_ray_hit(double *ray_len,
 				v_mult(cyl.orient, cyl.sca.height / 2)),
 			cyl.orient, c_gen(0.0, 0.0, 0.0));
 	d_n = v_inner(v_diff(cyl.cen, ray.orig), cyl.orient);
-	h[0] = ray_len[0] * v_inner(ray.dir, cyl.orient);
-	h[1] = ray_len[1] * v_inner(ray.dir, cyl.orient);
-	d[0] = h[0] - d_n;
-	d[1] = h[1] - d_n;
-	if (d[0] > cyl.sca.height / 2)
-	{
-		if (d[1] <= cyl.sca.height / 2)
-			ray_len[0] = get_ray_hit_to_plane(cyl_top, ray);
-		else
-			ray_len[0] = -1.0;
-	}
-	else if (d[0] < -cyl.sca.height / 2 )
-	{
-		if (d[1] >= -cyl.sca.height / 2)
-			ray_len[0] = get_ray_hit_to_plane(cyl_bottom, ray);
-		else
-			ray_len[0] = -1.0;
-	}
-	if (d[1] > cyl.sca.height / 2)
-	{
-		if (d[0] <= cyl.sca.height / 2)
-			ray_len[1] = get_ray_hit_to_plane(cyl_top, ray);
-		else
-			ray_len[1] = -1.0;
-	}
-	else if (d[1] < -cyl.sca.height / 2 )
-	{
-		if (d[0] >= -cyl.sca.height / 2)
-			ray_len[1] = get_ray_hit_to_plane(cyl_bottom, ray);
-		else
-			ray_len[1] = -1.0;
-	}
-}
-
-/*
-functions :	select ray length smaller that not smaller than 0
-
-parameters
-ray_len0 :	first length ray origin to hit point
-ray_len1 :	second length ray origin to hit point
-
-return value :	if ray_len0 hit, return 0,
-				if ray_len1 hit, return 1,
-				if any ray not hit, return -1
-*/
-static int	select_ray_len_return(double ray_len0, double ray_len1)
-{
-	if (ray_len1 >= 0 && ray_len0 >= 0)
-	{
-		if (ray_len0 > ray_len1)
-			return (1);
-		else
-			return (0);
-	}
-	else if (ray_len1 >= 0)
-		return (1);
-	else if (ray_len0 >= 0)
-		return (0);
-	else
-		return (-1);
+	d[0] = ray_len[0] * v_inner(ray.dir, cyl.orient) - d_n;
+	d[1] = ray_len[1] * v_inner(ray.dir, cyl.orient) - d_n;
+	if (get_ray_hit_cyl_plane(d[0], d[1], cyl.sca.height) == 0)
+		ray_len[0] = get_ray_hit_to_plane(cyl_top, ray);
+	else if (get_ray_hit_cyl_plane(d[0], d[1], cyl.sca.height) == 1)
+		ray_len[0] = get_ray_hit_to_plane(cyl_bottom, ray);
+	else if (get_ray_hit_cyl_plane(d[0], d[1], cyl.sca.height) == -1)
+		ray_len[0] = -1.0;
+	if (get_ray_hit_cyl_plane(d[1], d[0], cyl.sca.height) == 0)
+		ray_len[1] = get_ray_hit_to_plane(cyl_top, ray);
+	else if (get_ray_hit_cyl_plane(d[1], d[0], cyl.sca.height) == 1)
+		ray_len[1] = get_ray_hit_to_plane(cyl_bottom, ray);
+	else if (get_ray_hit_cyl_plane(d[1], d[0], cyl.sca.height) == -1)
+		ray_len[1] = -1.0;
 }
 
 /*
@@ -213,9 +204,9 @@ double	get_ray_hit_to_cylinder(t_cylinder cyl, t_ray ray)
 	ray_len[0] = ray_len_p[0] / (v_inner(ray_proj.dir, ray.dir));
 	ray_len[1] = ray_len_p[1] / (v_inner(ray_proj.dir, ray.dir));
 	get_ray_hit(ray_len, cyl, ray);
-	if (select_ray_len_return(ray_len[0], ray_len[1]) == 0)
+	if (select_cyl_ray_len_return(ray_len[0], ray_len[1]) == 0)
 		return (ray_len[0]);
-	else if (select_ray_len_return(ray_len[0], ray_len[1]) == 1)
+	else if (select_cyl_ray_len_return(ray_len[0], ray_len[1]) == 1)
 		return (ray_len[1]);
 	else
 		return (-1.0);
