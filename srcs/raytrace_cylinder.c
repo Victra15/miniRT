@@ -6,7 +6,7 @@
 /*   By: yolee <yolee@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 22:47:02 by yolee             #+#    #+#             */
-/*   Updated: 2022/11/17 18:41:27 by yolee            ###   ########.fr       */
+/*   Updated: 2022/11/19 20:23:44 by yolee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ static t_ray	get_proj_ray(t_cylinder cyl, t_ray ray)
 	p_plane = plane_gen(cyl.cen, cyl.orient, c_gen(0.0, 0.0, 0.0));
 	cos_n = v_inner(ray.dir, p_plane.norm);
 	d = v_inner(v_diff(p_plane.plane_point, ray.orig), p_plane.norm);
+	if (cos_n == 1.0)
+		cos_n -= EPSILON;
+	if (cos_n == -1.0)
+		cos_n += EPSILON;
 	if (cos_n != 0.0)
 	{
 		return (ray_gen(v_sum(v_mult(p_plane.norm, d), ray.orig),
@@ -72,13 +76,18 @@ static int	get_proj_ray_hit(double *ray_len_p,
 	t_vec3		vec_o;
 	double		r;
 	double		d;
+	double		d_e;
 
 	p_sphere = sphere_gen(cyl.cen, cyl.sca.diameter, c_gen(0.0, 0.0, 0.0));
 	ray_len_p[0] = -1.0;
 	ray_len_p[1] = -1.0;
 	r = p_sphere.diameter / 2;
 	vec_o = v_diff(p_sphere.cen, ray_proj.orig);
-	d = sqrt(v_inner(vec_o, vec_o) - pow(v_inner(vec_o, ray_proj.dir), 2));
+	d_e = v_inner(vec_o, vec_o) - pow(v_inner(vec_o, ray_proj.dir), 2);
+	if (d_e < 0.0)
+		d = 0.0;
+	else
+		d = sqrt(d_e);
 	if (r > d)
 	{
 		ray_len_p[0] = v_inner(vec_o, ray_proj.dir) - sqrt((r * r) - (d * d));
